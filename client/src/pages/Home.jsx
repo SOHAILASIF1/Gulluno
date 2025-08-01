@@ -1,0 +1,19 @@
+import React from 'react'
+import BannerProduct from '../component/BannerProduct'
+import VerticalCard from '../component/VerticalCard'
+import NewsLetter from '../component/NewsLetter'
+import CategoryMyPage from '../component/CategoryMyPage'
+
+function Home() {
+  return (
+    <div className=' w-full h-full'>
+        <BannerProduct/>
+        <CategoryMyPage/>
+        <VerticalCard category={"kurti"} heading={"Top Kurti Collection"}/>
+        <VerticalCard category={"sweatshirts"} heading={"T-shirts Collection"}/>
+        <NewsLetter/>
+    </div>
+  )
+}
+
+export default Home
