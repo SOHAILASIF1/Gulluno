@@ -375,36 +375,10 @@ export const sendContactEmail = async (req, res) => {
 
   } catch (error) {
     console.error("Email error:", error);
-    return res.status(500).json({ success: false, message: "Failed to send email" });
+    return res.status(500).json({ success: false, message: "Failed to send  yes email" });
   }
 };
 
 
 
-export const handleNewsletter = async (req, res) => {
-  const { email } = req.body
-
-  try {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'alyana998877@gmail.com',
-        pass: 'your-app-password-here'
-      }
-    })
-
-    const mailOptions = {
-      from: 'alyana998877@gmail.com',
-      to: 'alyana998877@gmail.com',
-      subject: 'New Newsletter Subscription',
-      html: `<p>New subscriber: <strong>${email}</strong></p>`
-    }
-
-    await transporter.sendMail(mailOptions)
-    res.status(200).json({ message: 'Subscription email sent' })
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ error: 'Failed to send subscription email' })
-  }
-}
 
