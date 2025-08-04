@@ -1,6 +1,6 @@
 import React, { useEffect ,createContext } from 'react'
 import './App.css'
-import SaleBanner from './component/saleBanner'
+import SaleBanner from './component/SaleBanner'
 import Header from './component/Header'
 import {BrowserRouter,Route,Routes} from 'react-router-dom'
 import Home from './pages/Home'
