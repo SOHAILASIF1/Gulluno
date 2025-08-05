@@ -1,4 +1,4 @@
-const backendDomain = process.env.REACT_APP_API_BASE_URL;
+const backendDomain = process.env.REACT_APP_API_BASE_URL || "https://gulluno.onrender.com";
 
 const SummaryApi = {
     signup: {
