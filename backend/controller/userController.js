@@ -202,15 +202,15 @@ export const userDetail = async (req, res) => {
       const {productId} = req?.body;
       const userId = req?.userId;
 
-      const existingCart = await Cart.findOne({ productId });
-      if (existingCart) {
-        return res.status(400).json({
-          success: false,
-          error: true,
-          message: "Already in Cart"
-        });
-       
-      }
+      const existingCart = await Cart.findOne({ productId, userId });
+if (existingCart) {
+  return res.status(400).json({
+    success: false,
+    error: true,
+    message: "Already in Cart"
+  });
+}
+
       const payload={
         productId: productId,
         userId: userId,
