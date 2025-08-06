@@ -73,7 +73,7 @@ export const login=async(req,res)=>{
             maxAge: 864000000,
             path: "/",
             secure: true, // Must be false for local development
-            sameSite: "lax", // More flexible for development
+            sameSite: "none", // More flexible for development
           })
           .status(200)
           .json({
