@@ -102,17 +102,24 @@ function Header() {
 
             {/* Mobile Input (overlay or dropdown) */}
             {showMobileSearch && (
-              <div className="absolute top-22 left-0 right-0 shadow-2xl rounded-lg p z-1000000">
-                <input
-                  type="text"
-                  placeholder="Search Products"
-                  value={search}
-                  onChange={handleSearch}
-                  className="max-w-2xl px-4 py-2 rounded-lg bg-gray-200 z-100 outline-none text-sm"
-                  autoFocus
-                />
-              </div>
-            )}
+  <div className="fixed inset-0 bg-white z-[1000] flex items-start px-4 py-3 shadow-lg">
+    <input
+      type="text"
+      placeholder="Search Products"
+      value={search}
+      onChange={handleSearch}
+      className="flex-1 px-4 py-2 rounded-md bg-gray-200 text-sm outline-none"
+      autoFocus
+    />
+    <button
+      onClick={toggleMobileSearch}
+      className="ml-3 text-amber-600 font-semibold text-sm"
+    >
+      Cancel
+    </button>
+  </div>
+)}
+
           </div>
         </div>
 
