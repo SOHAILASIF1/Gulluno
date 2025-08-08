@@ -8,7 +8,7 @@ import SummaryApi from '../commen';
 import { setUserDetail } from '../redux/userSlice';
 import { toast } from 'react-toastify';
 import { Context } from '../App';
-import logo from '../assest/logo.png'
+// import logo from '../assest/logo.png'
 function Header() {
   const context = useContext(Context);
   const navigate = useNavigate();
@@ -77,7 +77,7 @@ function Header() {
         {/* Left */}
         <div>
           <div className="text-lg md:text-xl font-bold text-amber-600">
-          <img src={logo} alt=''/>
+          <h6>Sohail</h6>
           </div>
         </div>
 
