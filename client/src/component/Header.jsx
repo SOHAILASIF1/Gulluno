@@ -75,12 +75,12 @@ function Header() {
     <div className="w-full shadow bg-white sticky top-0 z-50">
       <div className="flex flex-wrap items-center justify-between px-4 py-2 md:py-3 md:px-10">
         {/* Left */}
-        <div>
+        <div className='h-20 w-20'>
           <div>
           <img 
   src={logo} 
   alt='Logo'
-  className="h-20 w-20 md:h-12 object-contain"
+  className="h-full w-full md:h-12 object-contain"
 />
 
           </div>
