@@ -29,7 +29,7 @@ function Login() {
     const resData = await fetchData.json();
     if (resData.success) {
       toast.success("Login Successfully");
-      fetchUser();
+      await  fetchUser();
       navigate("/");
     } else {
       toast.error(resData.message);

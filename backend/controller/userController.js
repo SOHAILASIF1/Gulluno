@@ -131,8 +131,8 @@ export const userDetail = async (req, res) => {
         httpOnly: true,
         expires: new Date(0),
         path: "/",
-        sameSite: "lax",
-        secure: false, // HTTPS pe true hota hai
+        sameSite: "none",
+        secure: true, // HTTPS pe true hota hai
       });
       return res.status(200).json({
         success: true,
