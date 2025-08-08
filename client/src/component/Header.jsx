@@ -76,7 +76,7 @@ function Header() {
       <div className="flex flex-wrap items-center justify-between px-4 py-2 md:py-3 md:px-10">
         {/* Left */}
         <div>
-          <div className="text-lg md:text-xl font-bold text-amber-600">
+          <div>
           <img 
   src={logo} 
   alt='Logo'
