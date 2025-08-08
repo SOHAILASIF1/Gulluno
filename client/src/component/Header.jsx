@@ -8,7 +8,7 @@ import SummaryApi from '../commen';
 import { setUserDetail } from '../redux/userSlice';
 import { toast } from 'react-toastify';
 import { Context } from '../App';
-
+import logo from '../assest/logo'
 function Header() {
   const context = useContext(Context);
   const navigate = useNavigate();
@@ -76,9 +76,14 @@ function Header() {
       <div className="flex flex-wrap items-center justify-between px-4 py-2 md:py-3 md:px-10">
         {/* Left */}
         <div>
-          <h1 className="text-lg md:text-xl font-bold text-amber-600">
-            {user?.fullName || 'Apna Store'}
-          </h1>
+          <div className="text-lg md:text-xl font-bold text-amber-600">
+          <img 
+  src={logo} 
+  alt='Logo'
+  className="h-10 w-auto md:h-12 object-contain"
+/>
+
+          </div>
         </div>
 
         {/* Middle */}
