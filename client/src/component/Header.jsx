@@ -8,7 +8,7 @@ import SummaryApi from '../commen';
 import { setUserDetail } from '../redux/userSlice';
 import { toast } from 'react-toastify';
 import { Context } from '../App';
-import logo from '../assest/logo'
+import logo from '../assest/logo.png'
 function Header() {
   const context = useContext(Context);
   const navigate = useNavigate();
