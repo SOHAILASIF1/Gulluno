@@ -1,4 +1,4 @@
-const backendDomain = "http://localhost:4000"|| "https://gulluno.onrender.com";
+const backendDomain = "https://gulluno.onrender.com";
 console.log(backendDomain);
 
 const SummaryApi = {
