@@ -81,7 +81,7 @@ function Header() {
     <img 
       src={logo} 
       alt="Logo" 
-      className="h-12 w-auto object-contain md:h-14" 
+      className="h-12 w-20 object-contain md:h-14" 
     />
   </Link>
 </div>
