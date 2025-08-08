@@ -76,14 +76,16 @@ function Header() {
       <div className="flex flex-wrap items-center justify-between px-4 py-2 md:py-3 md:px-10">
         {/* Left */}
         <div className=''>
-          <div>
-          <img 
-  src={logo} 
-  alt='Logo'
-  className="h-15 w-15 object-contain"
-/>
+        <div className="flex items-center">
+  <Link to="/" className="flex items-center">
+    <img 
+      src={logo} 
+      alt="Logo" 
+      className="h-12 w-auto object-contain md:h-14" 
+    />
+  </Link>
+</div>
 
-          </div>
         </div>
 
         {/* Middle */}
