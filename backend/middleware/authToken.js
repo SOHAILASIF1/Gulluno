@@ -6,7 +6,7 @@ export const authToken=async(req,res,next)=>{
             return res.status(402).json({
                 success:false,
                 error:true,
-                message:"token not found"
+                message:"Login First"
             })
             
         }
