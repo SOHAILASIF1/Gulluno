@@ -94,7 +94,7 @@ function Links() {
           <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
         </li>
         <li className="list-none font-bold text-white text-base md:text-lg">
-          <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact Us</Link>
+          <Link to="/contactUs" onClick={() => setMenuOpen(false)}>Contact Us</Link>
         </li>
       </ul>
     </div>
