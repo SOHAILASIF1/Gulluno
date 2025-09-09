@@ -64,7 +64,7 @@ function Cart() {
 
   // Delete cart item
   const deleteCart = async (cartId) => {
-    try {
+   
       const deleteFetch = await fetch(SummaryApi.deleteCart.url, {
         method: SummaryApi.deleteCart.method,
         credentials: "include",
@@ -78,9 +78,7 @@ function Cart() {
         fetchAllCartProduct();
         fetchCount() // Refresh cart
       }
-    } catch (error) {
-      console.error("Error deleting cart item:", error);
-    }
+   
   };
 
   // Calculate totals

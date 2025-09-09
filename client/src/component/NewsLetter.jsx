@@ -24,7 +24,7 @@ function NewsLetter() {
       }
     } catch (error) {
       setStatus('❌ Something went wrong.')
-      console.error(error)
+      
     }
   }
 

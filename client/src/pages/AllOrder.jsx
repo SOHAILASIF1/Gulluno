@@ -20,10 +20,11 @@ function AllOrder() {
       if (data.success) {
         setOrders(data.data);
       } else {
-        console.log("Failed to fetch orders");
+       toast.error(data.message || "Failed to fetch orders");
       }
     } catch (error) {
-      console.error("Error fetching orders:", error);
+    
+      toast.error("Failed to fetch orders");
     } finally {
       setLoading(false);
     }
@@ -66,10 +67,11 @@ function AllOrder() {
         setOrders(updatedOrders);
         setEditingOrderId(null);
       } else {
-        alert("Failed to update status");
+        toast.error("Failed to update status");
       }
     } catch (error) {
-      console.error("Error updating status:", error);
+     
+      toast.error("Failed to update order status");
     }
   };
 

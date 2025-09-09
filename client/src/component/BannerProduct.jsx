@@ -43,7 +43,7 @@ function BannerProduct() {
   },[current])
   return (
     <div className=" rounded ">
-      <div className="lg:h-102 h-56 w-full bg-slate-100 relative overflow-hidden ">
+      <div className="lg:h-102 h-86 w-full bg-slate-100 relative overflow-hidden ">
         <div className="absolute z-10 h-full w-full flex items-center">
           <div className=" hidden   lg:flex justify-between w-full">
             <button onClick={()=>{

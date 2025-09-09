@@ -214,56 +214,78 @@ function UploadProduct({ onClose, fetchData }) {
           </div>
 
           {/* Sizes */}
-          <div className="flex flex-col">
-            <label htmlFor="sizes">Sizes / Ages:</label>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                id="sizes"
-                value={sizeInput}
-                onChange={(e) => setSizeInput(e.target.value)}
-                placeholder="e.g. Small, Medium, Age 2-3"
-                className="p-1 bg-amber-100 rounded border flex-1"
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  if (sizeInput.trim() !== "") {
-                    setData((prev) => ({
-                      ...prev,
-                      sizes: [...prev.sizes, sizeInput.trim()],
-                    }));
-                    setSizeInput("");
-                  }
-                }}
-                className="bg-green-500 text-white px-2 rounded"
-              >
-                Add
-              </button>
-            </div>
-            <div className="flex flex-wrap gap-2 mt-2">
-              {data.sizes.map((size, index) => (
-                <div
-                  key={index}
-                  className="bg-amber-200 px-2 py-1 rounded flex items-center gap-1"
-                >
-                  <span>{size}</span>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setData((prev) => ({
-                        ...prev,
-                        sizes: prev.sizes.filter((_, i) => i !== index),
-                      }));
-                    }}
-                    className="text-red-500 font-bold"
-                  >
-                    &times;
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* Sizes with Inventory */}
+<div className="flex flex-col">
+  <label htmlFor="sizes">Sizes / Ages:</label>
+  <div className="flex gap-2">
+    <input
+      type="text"
+      id="sizes"
+      value={sizeInput}
+      onChange={(e) => setSizeInput(e.target.value)}
+      placeholder="e.g. Small, Medium, Age 2-3"
+      className="p-1 bg-amber-100 rounded border flex-1"
+    />
+    <button
+      type="button"
+      onClick={() => {
+        if (sizeInput.trim() !== "") {
+          setData((prev) => ({
+            ...prev,
+            sizes: [...prev.sizes, { size: sizeInput.trim(), inventory: 0 }],
+          }));
+          setSizeInput("");
+        }
+      }}
+      className="bg-green-500 text-white px-2 rounded"
+    >
+      Add
+    </button>
+  </div>
+
+  {/* Display Sizes with Inventory */}
+  <div className="flex flex-wrap gap-3 mt-3">
+    {data.sizes.map((item, index) => (
+      <div
+        key={index}
+        className="bg-amber-200 px-3 py-2 rounded flex items-center gap-2"
+      >
+        {/* Size Name */}
+        <span className="font-semibold">{item.size}</span>
+
+        {/* Inventory Input */}
+        <input
+          type="number"
+          min="0"
+          value={item.inventory}
+          onChange={(e) => {
+            const newSizes = [...data.sizes];
+            newSizes[index].inventory = Number(e.target.value);
+            setData((prev) => ({
+              ...prev,
+              sizes: newSizes,
+            }));
+          }}
+          className="w-16 p-1 text-center border rounded bg-white"
+        />
+
+        {/* Delete Button */}
+        <button
+          type="button"
+          onClick={() => {
+            setData((prev) => ({
+              ...prev,
+              sizes: prev.sizes.filter((_, i) => i !== index),
+            }));
+          }}
+          className="text-red-500 font-bold"
+        >
+          &times;
+        </button>
+      </div>
+    ))}
+  </div>
+</div>
 
           {/* Prices */}
           <div className="flex flex-col">

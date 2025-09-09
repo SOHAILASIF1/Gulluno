@@ -24,8 +24,9 @@ import Order from './pages/OrderPage'
 import AllOrder from './pages/AllOrder'
 import OrderConfirmation from './pages/OrderConfirmation'
 import ContactUs from './pages/ContactUs'
+import CompletedOrder from './pages/CompletedOrder'
 
-const Context = createContext(null);
+const Context = createContext(null) || {};
 
 function App() {
   const [countItem,setCountItem]=useState('')
@@ -52,7 +53,7 @@ function App() {
   };
 
   const fetchCount=async()=>{
-    try {
+    
       const dataRes=await fetch(SummaryApi.countCart.url,{
         method:SummaryApi.countCart.method,
         credentials:"include"
@@ -63,10 +64,7 @@ function App() {
         
       }
       
-    } catch (error) {
-      console.log(error.message);
-      
-    }
+  
   }
   
   
@@ -108,6 +106,7 @@ function App() {
         <Route path='all-user' element={<AllUser/>}/>
         <Route path='all-product' element={<AllProduct/>}/>
         <Route path='all-order' element={<AllOrder/>}/>
+       < Route path='completed-order' element={<CompletedOrder/>}/>
 
 
 

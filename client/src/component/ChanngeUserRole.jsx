@@ -35,6 +35,8 @@ function ChanngeUserRole(
                     onClose()
                     callFunction()
                     
+                }else{
+                    toast.error(response.message || "Failed to update user role")
                 }
 
             

@@ -24,6 +24,8 @@ function AdminProduct({
        toast.success(responce.message || "Product Deleted Successfully")
        fetchData()
        
+    }else{
+        toast.error(responce.message || "Failed to delete product")
     }}
   return (
     <div className='bg-amber-65 border px-2 rounded-lg py-2 outline-0  shadow-bottom-right bg-gray-100  border-gray-100 '>

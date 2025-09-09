@@ -1,4 +1,5 @@
-const backendDomain = "https://gulluno.onrender.com";
+const backendDomain ="https://gulluno.onrender.com";
+
 console.log(backendDomain);
 
 const SummaryApi = {
@@ -97,6 +98,10 @@ const SummaryApi = {
     sendEmail: {
         url: `${backendDomain}/api/user/contactUs`,
         method: "post"
+    },
+    allDileverdOrder: {
+        url: `${backendDomain}/api/order/allDileverdOrder`,
+        method: "get"
     }
 };
 

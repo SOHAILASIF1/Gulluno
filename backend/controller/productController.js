@@ -77,53 +77,69 @@ export const deleteProduct=async(req,res)=>{
         
     }
 }
-export const updateProduct=async(req,res)=>{
+export const updateProduct = async (req, res) => {
     try {
-        const sessionId=req.userId
-        if(!uploadProductPermission(sessionId)){
-            return res.status(403).json({
-                success:false,
-                error:true,
-                message:"Permission Denied"
-            })
+        const sessionId = req.userId;
 
+        // Permission check
+        if (!uploadProductPermission(sessionId)) {
+            return res.status(403).json({
+                success: false,
+                error: true,
+                message: "Permission Denied"
+            });
         }
-        const {_id,...updateFields}=req.body
+
+        // Destructure _id and rest of fields
+        const { _id, ...updateFields } = req.body;
+
         if (!_id) {
             return res.status(400).json({
-                success:false,
-                error:true,
-                message:"Product ID is required"
-            })
-            
+                success: false,
+                error: true,
+                message: "Product ID is required"
+            });
         }
-        const updataProduct=await Product.findByIdAndUpdate(_id, updateFields, {new: true});
-        if (!updataProduct) {
+
+        console.log("Request Body:", req.body);
+        console.log("Update Fields:", updateFields);
+
+        // Update product
+        const updatedProduct = await Product.findByIdAndUpdate(
+            _id,
+            { $set: updateFields },
+            { new: true, runValidators: true }
+          );
+          
+        console.log(updateProduct);
+
+        if (!updatedProduct) {
             return res.status(404).json({
-                success:false,
-                error:true,
-                message:"Product Not Found"
-            })
-            
+                success: false,
+                error: true,
+                message: "Product Not Found"
+            });
         }
+
         return res.status(200).json({
-            success:true,
-            error:false,
-            message:"Product Updated Successfully",
-            data:updataProduct
-        }
-            )
-        i
-        
+            success: true,
+            error: false,
+            message: "Product Updated Successfully",
+            data: updatedProduct
+        });
+        console.log(res.json);
+
+
+
     } catch (error) {
+        console.error("Update Product Error:", error);
         return res.status(500).json({
-            success:false,
-            error:true,
-            message:error.message
-        })
-        
+            success: false,
+            error: true,
+            message: error.message
+        });
     }
-}
+};
 
 export const categoryWiseProduct=async(req,res)=>{
     try {

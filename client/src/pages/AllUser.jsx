@@ -14,7 +14,7 @@ function AllUser() {
   const [showChangeRole, setShowChangeRole] = useState(false)
 
   const fetchAllUser = async () => {
-    try {
+    
       const fetchusers = await fetch(SummaryApi.allUser.url, {
         method: SummaryApi.allUser.method,
         credentials: "include"
@@ -26,9 +26,7 @@ function AllUser() {
       if (response.error) {
         toast.error(response.message)
       }
-    } catch (error) {
-      console.log(error.message)
-    }
+    
   }
 
   useEffect(() => {

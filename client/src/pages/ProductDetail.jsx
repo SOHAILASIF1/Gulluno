@@ -20,7 +20,7 @@ function ProductDetail() {
   const params = useParams();
 
   const fetchdata = async () => {
-    try {
+    
       const getDetail = await fetch(SummaryApi.getProductDetail.url, {
         method: SummaryApi.getProductDetail.method,
         headers: {
@@ -35,9 +35,7 @@ function ProductDetail() {
         setData(response.data);
         setActiveImg(response.data.productImage[0]);
       }
-    } catch (error) {
-      console.error("Error fetching product details:", error);
-    }
+    
   };
 
   const handleCart = async (e, id) => {

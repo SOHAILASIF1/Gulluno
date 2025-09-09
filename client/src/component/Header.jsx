@@ -40,7 +40,8 @@ function Header() {
     const data = await res.json();
     if (data.success) {
       dispatch(setUserDetail(data.data));       // null ya {} set hoga
-      context.setCountItem(0);                  // UI se cart count hata do
+      context.setCountItem(0);  
+      context.countItem()                // UI se cart count hata do
       toast.success(data.message);
   
       setTimeout(() => {
@@ -136,13 +137,13 @@ function Header() {
           </Link>
 
           {user?.role === 'ADMIN' && (
-            <div className="relative cursor-pointer" onClick={() => setMenu(!menu)}>
+            <div className="relative cursor-pointer overflow-visible" onClick={() => setMenu(!menu)}>
               <div className="flex items-center gap-2 hover:text-amber-600">
                 <FaUserAlt />
                 <p className="text-sm font-medium hidden md:block">Admin</p>
               </div>
               {menu && (
-                <div className="absolute right-0 mt-2 bg-white border rounded-lg shadow-md z-50 w-48">
+                <div className="absolute right-0 mt-2 bg-white border rounded-lg shadow-md z-[9999] w-48">
                   <ul onClick={() => setMenu(false)} className="flex flex-col">
                     <li>
                       <Link to="/admin-panel/all-product" className="block px-4 py-2 hover:bg-amber-100 text-sm text-gray-700">

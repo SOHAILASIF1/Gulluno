@@ -93,3 +93,26 @@ export const orderCreate=async (req, res) => {
       
     }
   }
+
+
+
+  export const allDilveredOrder=async (req,res)=>{
+    try {
+      const deliveredOrders = await Order.find({ status: "delivered" });
+      return res.status(200).json({
+        message: "Delivered orders fetched successfully",
+        success: true,
+        error: false,
+        data: deliveredOrders
+      })
+      
+    } catch (error) {
+      log.error("Failed to fetch delivered orders", error);
+      return res.status(500).json({
+        message:error.message,
+        success:false,
+        error:true
+      })
+      
+    }
+  }

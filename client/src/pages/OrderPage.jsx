@@ -10,6 +10,7 @@ import {
   FaMoneyCheckAlt,
   FaStickyNote,
 } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 function Order() {
   const location = useLocation();
@@ -34,7 +35,7 @@ function Order() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
+    
       const res = await fetch(SummaryApi.createOrder.url, {
         method: SummaryApi.createOrder.method,
         headers: {
@@ -49,22 +50,32 @@ function Order() {
 
       const data = await res.json();
       if (data.success) {
-        alert("Order placed successfully!");
+        toast.success("Order placed successfully!");
         navigate("/orderConfirmation");
       } else {
-        alert(data.message || "Failed to place order.");
+        toast.error(data.message || "Failed to place order.");
       }
-    } catch (error) {
-      console.error("Order error:", error);
-      alert("Something went wrong.");
-    }
+   
   };
 
   return (
     <div className="p-6 max-w-2xl mx-auto bg-white shadow-xl rounded-lg mt-8">
+      
+      {/* Delivered Orders Button */}
+      <div className="flex justify-end mb-4">
+        <button
+          onClick={() => navigate("/deliveredOrders")}
+          type="button"
+          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm shadow-md"
+        >
+          Delivered Orders
+        </button>
+      </div>
+
       <h2 className="text-3xl font-semibold text-blue-700 mb-6 text-center">
         Order Details
       </h2>
+
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Full Name */}
         <div className="relative">

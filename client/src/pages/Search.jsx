@@ -17,8 +17,7 @@ function Search() {
     useEffect(()=>{
       fetchData()
     },[query])
-    console.log(data.lenght);
-    console.log(query);
+   
   return (
     <div className='p-4 h-full w-full'>
       {

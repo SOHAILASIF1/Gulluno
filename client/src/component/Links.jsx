@@ -53,7 +53,7 @@ function Links() {
   );
 
   return (
-    <div className={`w-full px-4 md:px-16 py-2 bg-black z-50 ${isHomePage ? 'sticky top-13' : ''}`}>
+    <div className={`w-full px-4 md:px-16 py-2 bg-black z-40 ${isHomePage ? 'sticky top-13' : ''}`}>
       {/* Hamburger for mobile */}
       <div className="flex justify-between items-center md:hidden">
         <h1 className="text-white text-xl font-bold">Menu</h1>
