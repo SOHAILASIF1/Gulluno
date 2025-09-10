@@ -144,57 +144,62 @@ const handleInventoryChange = (index, value) => {
             />
           </div>
 
-          {/* Gender */}
-          <div className="flex flex-col">
-            <label htmlFor="gender">Category Group:</label>
-            <select
-              id="genderCategory"
-              name="genderCategory"
-              value={data.genderCategory}
-              onChange={(e) => {
-                const { value } = e.target;
-                setSelectedGender(value);
-                setData((prev) => ({
-                  ...prev,
-                  genderCategory: value,
-                  category: "",
-                }));
-              }}
-              className="p-2 bg-slate-50 border rounded outline-none"
-            >
-              <option value="">-- Select Group --</option>
-              <option value="boys">Boys</option>
-              <option value="girls">Girls</option>
-              <option value="newborn">Newborn</option>
-              <option value="teen">Teen</option>
-            </select>
-          </div>
+      
 
           {/* Category */}
-          <div className="flex flex-col">
-            <label htmlFor="category">Category:</label>
-            <select
-              id="category"
-              name="category"
-              value={data.category}
-              onChange={handleChange}
-              disabled={!selectedGender}
-              className="p-2 bg-slate-50 border rounded outline-none"
-            >
-              {!selectedGender ? (
-                <option value="">-- Select Group First --</option>
-              ) : (
-                <>
-                  <option value="">-- Select Category --</option>
-                  {productCategory[selectedGender]?.map((el) => (
-                    <option key={el.value} value={el.value}>
-                      {el.label}
-                    </option>
-                  ))}
-                </>
-              )}
-            </select>
-          </div>
+        {/* Gender / Category Group */}
+<div className="flex flex-col">
+  <label htmlFor="gender">Category Group:</label>
+  <select
+    id="genderCategory"
+    name="genderCategory"
+    value={data.genderCategory}
+    onChange={(e) => {
+      const { value } = e.target;
+      setSelectedGender(value);
+      setData((prev) => ({
+        ...prev,
+        genderCategory: value,
+        category: "",
+      }));
+    }}
+    className="p-2 bg-slate-50 border rounded outline-none"
+  >
+    <option value="">-- Select Group --</option>
+    <option value="boys">Boys</option>
+    <option value="boysSummer">Boys Summer</option>
+    <option value="girlsWinter">Girls Winter</option>
+    <option value="girlsSummer">Girls Summer</option>
+    <option value="newborn">Newborn</option>
+    <option value="teen">Teen</option>
+  </select>
+</div>
+
+{/* Category */}
+<div className="flex flex-col">
+  <label htmlFor="category">Category:</label>
+  <select
+    id="category"
+    name="category"
+    value={data.category}
+    onChange={handleChange}
+    disabled={!selectedGender}
+    className="p-2 bg-slate-50 border rounded outline-none"
+  >
+    {!selectedGender ? (
+      <option value="">-- Select Group First --</option>
+    ) : (
+      <>
+        <option value="">-- Select Category --</option>
+        {productCategory[selectedGender]?.map((el) => (
+          <option key={el.value} value={el.value}>
+            {el.label}
+          </option>
+        ))}
+      </>
+    )}
+  </select>
+</div>
 
           {/* Product Image */}
           <div className="flex flex-col">
@@ -250,48 +255,80 @@ const handleInventoryChange = (index, value) => {
           </div>
 
           {/* Sizes with Inventory */}
-          <div className="flex flex-col">
-            <label htmlFor="sizes">Sizes / Ages:</label>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                id="sizes"
-                value={sizeInput}
-                onChange={(e) => setSizeInput(e.target.value)}
-                placeholder="e.g. Small, Medium, Age 2-3"
-                className="p-1 bg-amber-100 rounded border flex-1"
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  if (sizeInput.trim() !== "") {
-                    setData((prev) => ({
-                      ...prev,
-                      sizes: [
-                        ...prev.sizes,
-                        { size: sizeInput.trim(), inventory: 0 },
-                      ],
-                    }));
-                    setSizeInput("");
-                  }
-                }}
-                className="bg-green-500 text-white px-2 rounded"
-              >
-                Add
-              </button>
-            </div>
-
-            {/* Display Sizes with Inventory */}
-            <div className="flex flex-wrap gap-3 mt-3">
-            {data.sizes.map((s, idx) => (
-  <div key={idx} className="flex gap-2">
-    <input type="text" value={s.size} readOnly className="border px-2" />
-    <input type="number" value={s.inventory} onChange={(e) => handleInventoryChange(idx, e.target.value)} />
+        {/* Sizes with Inventory */}
+<div className="flex flex-col">
+  <label htmlFor="sizes">Sizes / Ages:</label>
+  <div className="flex gap-2">
+    <input
+      type="text"
+      id="sizes"
+      value={sizeInput}
+      onChange={(e) => setSizeInput(e.target.value)}
+      placeholder="e.g. Small, Medium, Age 2-3"
+      className="p-1 bg-amber-100 rounded border flex-1"
+    />
+    <button
+      type="button"
+      onClick={() => {
+        if (sizeInput.trim() !== "") {
+          setData((prev) => ({
+            ...prev,
+            sizes: [
+              ...prev.sizes,
+              { size: sizeInput.trim(), inventory: 0 },
+            ],
+          }));
+          setSizeInput("");
+        }
+      }}
+      className="bg-green-500 text-white px-2 rounded"
+    >
+      Add
+    </button>
   </div>
-))}
 
-            </div>
-          </div>
+  {/* Display Sizes with Inventory */}
+  <div className="flex flex-wrap gap-3 mt-3">
+    {data.sizes.map((s, idx) => (
+      <div
+        key={idx}
+        className="flex items-center gap-2 bg-amber-200 px-3 py-2 rounded"
+      >
+        {/* Size Name (readonly) */}
+        <input
+          type="text"
+          value={s.size}
+          readOnly
+          className="border px-2 py-1 bg-white rounded w-24 text-center"
+        />
+
+        {/* Inventory Input */}
+        <input
+          type="number"
+          min="0"
+          value={s.inventory}
+          onChange={(e) => handleInventoryChange(idx, e.target.value)}
+          className="border px-2 py-1 rounded w-16 text-center"
+        />
+
+        {/* Delete Button */}
+        <button
+          type="button"
+          onClick={() => {
+            setData((prev) => ({
+              ...prev,
+              sizes: prev.sizes.filter((_, i) => i !== idx),
+            }));
+          }}
+          className="text-red-500 hover:text-red-700 text-xl"
+        >
+          <MdDelete />
+        </button>
+      </div>
+    ))}
+  </div>
+</div>
+
 
           {/* Prices */}
           <div className="flex flex-col">

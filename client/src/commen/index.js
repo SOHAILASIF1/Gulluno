@@ -1,4 +1,6 @@
-const backendDomain ="https://gulluno.onrender.com";
+// const backendDomain ="https://gulluno.onrender.com";
+const backendDomain ="http://localhost:4000";
+
 
 console.log(backendDomain);
 

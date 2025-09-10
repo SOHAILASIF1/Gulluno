@@ -109,56 +109,63 @@ function UploadProduct({ onClose, fetchData }) {
           </div>
 
           {/* Gender */}
-          <div className="flex flex-col">
-            <label htmlFor="gender">Category Group:</label>
-            <select
-              id="genderCategory"
-              name="genderCategory"
-              value={data.genderCategory}
-              onChange={(e) => {
-                const { value } = e.target;
-                setSelectedGender(value);
-                setData((prev) => ({
-                  ...prev,
-                  genderCategory: value,
-                  category: "",
-                }));
-              }}
-              className="p-2 bg-slate-50 border rounded outline-none"
-            >
-              <option value="">-- Select Group --</option>
-              <option value="boys">Boys</option>
-              <option value="girls">Girls</option>
-              <option value="newborn">Newborn</option>
-              <option value="teen">Teen</option>
-            </select>
-          </div>
+       
 
           {/* Category */}
-          <div className="flex flex-col">
-            <label htmlFor="category">Category:</label>
-            <select
-              id="category"
-              name="category"
-              value={data.category}
-              onChange={handleChange}
-              disabled={!selectedGender}
-              className="p-2 bg-slate-50 border rounded outline-none"
-            >
-              {!selectedGender ? (
-                <option value="">-- Select Group First --</option>
-              ) : (
-                <>
-                  <option value="">-- Select Category --</option>
-                  {productCategory[selectedGender].map((el) => (
-                    <option key={el.value} value={el.value}>
-                      {el.label}
-                    </option>
-                  ))}
-                </>
-              )}
-            </select>
-          </div>
+        {/* Gender / Category Group */}
+<div className="flex flex-col">
+  <label htmlFor="gender">Category Group:</label>
+  <select
+    id="genderCategory"
+    name="genderCategory"
+    value={data.genderCategory}
+    onChange={(e) => {
+      const { value } = e.target;
+      setSelectedGender(value);
+      setData((prev) => ({
+        ...prev,
+        genderCategory: value,
+        category: "",
+      }));
+    }}
+    className="p-2 bg-slate-50 border rounded outline-none"
+  >
+    <option value="">-- Select Group --</option>
+    <option value="boys">Boys</option>
+    <option value="boysSummer">Boys Summer</option>
+    <option value="girlsWinter">Girls Winter</option>
+    <option value="girlsSummer">Girls Summer</option>
+    <option value="newborn">Newborn</option>
+    <option value="teen">Teen</option>
+  </select>
+</div>
+
+{/* Category */}
+<div className="flex flex-col">
+  <label htmlFor="category">Category:</label>
+  <select
+    id="category"
+    name="category"
+    value={data.category}
+    onChange={handleChange}
+    disabled={!selectedGender}
+    className="p-2 bg-slate-50 border rounded outline-none"
+  >
+    {!selectedGender ? (
+      <option value="">-- Select Group First --</option>
+    ) : (
+      <>
+        <option value="">-- Select Category --</option>
+        {productCategory[selectedGender]?.map((el) => (
+          <option key={el.value} value={el.value}>
+            {el.label}
+          </option>
+        ))}
+      </>
+    )}
+  </select>
+</div>
+
 
           {/* Product Image */}
           <div className="flex flex-col">
@@ -215,6 +222,7 @@ function UploadProduct({ onClose, fetchData }) {
 
           {/* Sizes */}
           {/* Sizes with Inventory */}
+          {/* Sizes with Inventory */}
 <div className="flex flex-col">
   <label htmlFor="sizes">Sizes / Ages:</label>
   <div className="flex gap-2">
@@ -232,7 +240,10 @@ function UploadProduct({ onClose, fetchData }) {
         if (sizeInput.trim() !== "") {
           setData((prev) => ({
             ...prev,
-            sizes: [...prev.sizes, { size: sizeInput.trim(), inventory: 0 }],
+            sizes: [
+              ...prev.sizes,
+              { size: sizeInput.trim(), inventory: 0 }, // default 0 inventory
+            ],
           }));
           setSizeInput("");
         }
@@ -286,6 +297,8 @@ function UploadProduct({ onClose, fetchData }) {
     ))}
   </div>
 </div>
+
+
 
           {/* Prices */}
           <div className="flex flex-col">
