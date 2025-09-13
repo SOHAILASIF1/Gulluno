@@ -207,6 +207,7 @@ function AllOrder() {
                                 <p className="font-semibold">
                                   {item.productId.productName}
                                 </p>
+                                <p>{item.size}</p>
                                 <p>Qty: {item.quantity}</p>
                                 <p>Price: Rs {item.price}</p>
                               </div>

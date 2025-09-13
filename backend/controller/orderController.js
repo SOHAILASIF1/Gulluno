@@ -18,7 +18,8 @@ export const orderCreate=async (req, res) => {
         items: cartItems.map(item => ({
           productId: item.productId._id,
           quantity: item.quantity,
-          price: item.productId.sellingPrice
+          price: item.productId.sellingPrice,
+          size:item.size
         })),
       });
   

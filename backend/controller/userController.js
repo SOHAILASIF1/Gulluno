@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import nodemailer from 'nodemailer';
 import Cart from "../models/cartModel.js";
+import Product from "../models/productModel.js";
 export const signup=async(req,res)=>{
     try {
         const {fullName,email,password}=req.body
@@ -197,43 +198,85 @@ export const userDetail = async (req, res) => {
     }
   }
 
-  export const addCart=async(req,res)=>{
+ 
+  
+  export const addCart = async (req, res) => {
     try {
-      const {productId} = req?.body;
-      const userId = req?.userId;
-
-      const existingCart = await Cart.findOne({ productId, userId });
-if (existingCart) {
-  return res.status(400).json({
-    success: false,
-    error: true,
-    message: "Already in Cart"
-  });
-}
-
-      const payload={
-        productId: productId,
-        userId: userId,
-        quantity: 1 
+      const { productId, size } = req.body;
+      const userId = req.userId;
+  
+      if (!productId) {
+        return res.status(400).json({
+          success: false,
+          error: true,
+          message: "ProductId is required",
+        });
       }
-      const cart =new Cart(payload);
+  
+      // ✅ product fetch karo
+      const product = await Product.findById(productId);
+      if (!product) {
+        return res.status(404).json({
+          success: false,
+          error: true,
+          message: "Product not found",
+        });
+      }
+  
+      // ✅ check karo agar product me sizes hain to size required hai
+      if (product.sizes.length > 0 && !size) {
+        return res.status(400).json({
+          success: false,
+          error: true,
+          message: "Size is required for this product",
+        });
+      }
+  
+      // ✅ check agar same product + same size already cart me hai
+      const query = { productId, userId };
+      if (product.sizes.length > 0) {
+        query.size = size;
+      }
+  
+      const existingCart = await Cart.findOne(query);
+      if (existingCart) {
+        return res.status(400).json({
+          success: false,
+          error: true,
+          message: "Already in Cart",
+        });
+      }
+  
+      const payload = {
+        productId,
+        userId,
+        quantity: 1,
+      };
+  
+      if (product.sizes.length > 0) {
+        payload.size = size;
+      }
+  
+      const cart = new Cart(payload);
       const savedCart = await cart.save();
+  
       return res.status(200).json({
         success: true,
         error: false,
         message: "Product Added to Cart Successfully",
-        data: savedCart
-      })
-      
+        data: savedCart,
+      });
     } catch (error) {
+      console.log(error);
       return res.status(500).json({
         success: false,
-        error:true,
-        message:error.message
-      })
-      
+        error: true,
+        message: error.message,
+      });
     }
-  }
+  };
+  
+  
 
 
   export const countCart=async(req,res)=>{

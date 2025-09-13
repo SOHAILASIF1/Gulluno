@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import SummaryApi from '../commen';
 import { Link } from 'react-router-dom';
 import { Context } from '../App';
+import addCart from '../helper/addToCart';
 
 function SaleItem({heading}) {
   const [showAll, setShowAll] = useState(false);
@@ -107,7 +108,7 @@ function SaleItem({heading}) {
 
                 <div className="w-full px-3 pb-3">
                   <button
-                    onClick={(e) => handleCart(e, product?._id)}
+                    onClick={(e) => addCart(e, product?._id)}
                     className="w-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-pink-600 hover:to-rose-600 text-white py-1.5 rounded-full text-xs sm:text-sm font-semibold shadow hover:shadow-lg transition duration-200"
                   >
                     Add To Cart
@@ -120,12 +121,15 @@ function SaleItem({heading}) {
       {/* Show More / Less */}
       {!loading && data?.length > 8 && (
         <div className="text-center mt-8">
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="px-6 py-2 rounded-full bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold shadow-md transition"
-          >
-            {showAll ? "Show Less" : "Show More"}
-          </button>
+      <button
+  onClick={(e) =>
+    addCart(e, product?._id, null, product?.sizes?.length > 0)
+  }
+  className="w-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-pink-600 hover:to-rose-600 text-white py-1.5 rounded-full text-xs sm:text-sm font-semibold shadow hover:shadow-lg transition duration-200"
+>
+  Add To Cart
+</button>
+
         </div>
       )}
     </div>
