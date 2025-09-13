@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IoIosClose } from "react-icons/io";
-import productCategory from "../helper/productCategory";
-import uploadImage from "../helper/uploadImage";
+import productCategory from "../../../helper/productCategory";
+import uploadImage from "../../../helper/uploadImage";
 import { MdDelete } from "react-icons/md";
 import SummaryApi from "../commen";
 import { toast } from "react-toastify";

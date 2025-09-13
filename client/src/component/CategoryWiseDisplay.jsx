@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import fetchCategoryWiseProduct from '../helper/fetchCategoryWiseProduct';
+import fetchCategoryWiseProduct from '../../../helper/fetchCategoryWiseProduct';
 import { Link } from 'react-router-dom';
-import addCart from '../helper/addToCart';
+import addCart from '../../../helper/addToCart';
 
 function CategoryWiseDisplay({ heading, category, sortOrder }) {
   const [data, setData] = useState([]);

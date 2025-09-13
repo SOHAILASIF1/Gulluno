@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import addToCart from "../helper/addToCart";
+import addToCart from "../../../helper/addToCart";
 import { Link } from "react-router-dom";
 import { Context } from "../App";
 

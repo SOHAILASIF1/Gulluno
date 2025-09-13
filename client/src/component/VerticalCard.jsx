@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import fetchCategoryWiseProduct from "../helper/fetchCategoryWiseProduct";
+import fetchCategoryWiseProduct from "../../../helper/fetchCategoryWiseProduct";
 import { Link } from "react-router-dom";
-import addCart from "../helper/addToCart";
+import addCart from "../../../helper/addToCart";
 import { Context } from "../App";
 
 function VerticalCard({ category, heading }) {

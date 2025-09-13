@@ -1,16 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import productCategory from '../helper/productCategory'; // ← Make sure path is correct
+import productCategory from '../../../helper/productCategory'; // ← path correct rakhna
 
 function Links() {
+  const [boysOpen, setBoysOpen] = useState(false);
+  const [boysSummerOpen, setBoysSummerOpen] = useState(false);
+  const [girlsWinterOpen, setGirlsWinterOpen] = useState(false);
+  const [girlsSummerOpen, setGirlsSummerOpen] = useState(false);
   const [newBornOpen, setNewBornOpen] = useState(false);
   const [teenOpen, setTeenOpen] = useState(false);
-  const [boysOpen, setBoysOpen] = useState(false);
-  const [girlOpen, setGirlOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+
+  const menuRef = useRef(null);
+
+  // 🟢 Bahar click par band karne ka effect
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+        setBoysOpen(false);
+        setBoysSummerOpen(false);
+        setGirlsWinterOpen(false);
+        setGirlsSummerOpen(false);
+        setNewBornOpen(false);
+        setTeenOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const toggleDropdown = (setFn, current) => {
     setFn(!current);
@@ -53,8 +77,11 @@ function Links() {
   );
 
   return (
-    <div className={`w-full px-4 md:px-16 py-2 bg-black z-40 ${isHomePage ? 'sticky top-13' : ''}`}>
-      {/* Hamburger for mobile */}
+    <div
+      ref={menuRef}
+      className={`w-full px-4 md:px-16 py-2 bg-black z-40 ${isHomePage ? 'sticky top-13' : ''}`}
+    >
+      {/* Mobile Hamburger */}
       <div className="flex justify-between items-center md:hidden">
         <h1 className="text-white text-xl font-bold">Menu</h1>
         <button
@@ -85,8 +112,11 @@ function Links() {
           <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
         </li>
 
+        {/* 👇 Alag-alag Dropdowns */}
         {renderDropdown('Boys', boysOpen, setBoysOpen, 'boys')}
-        {renderDropdown('Girls', girlOpen, setGirlOpen, 'girls')}
+        {renderDropdown('Boys Summer', boysSummerOpen, setBoysSummerOpen, 'boysSummer')}
+        {renderDropdown('Girls Winter', girlsWinterOpen, setGirlsWinterOpen, 'girlsWinter')}
+        {renderDropdown('Girls Summer', girlsSummerOpen, setGirlsSummerOpen, 'girlsSummer')}
         {renderDropdown('New Born', newBornOpen, setNewBornOpen, 'newborn')}
         {renderDropdown('Teen', teenOpen, setTeenOpen, 'teen')}
 

@@ -1,5 +1,5 @@
 // helper/addToCart.js
-import SummaryApi from "../commen";
+import SummaryApi from "../client/src/commen";
 import { toast } from "react-toastify";
 
 const addCart = async (e, id, size = null, hasSizes = false) => {
