@@ -1,4 +1,4 @@
-import SummaryApi from "../client/src/commen"
+import SummaryApi from "../commen";
 
 const fetchCategoryWiseProduct=async(category)=>{
     try {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import productCategory from '../../../helper/productCategory'; // ← path correct rakhna
+import productCategory from '../helper/productCategory';
 
 function Links() {
   const [boysOpen, setBoysOpen] = useState(false);

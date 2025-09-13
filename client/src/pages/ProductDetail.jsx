@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import SummaryApi from "../commen";
 import VerticalCard from "../component/VerticalCard";
-import addCart from "../../../helper/addToCart";
 import { Context } from "../App";
 import { toast } from "react-toastify";
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import productCategory from '../../../helper/productCategory';
+import productCategory from '../helper/productCategory';
 import CategoryWiseDisplay from './CategoryWiseDisplay';
 
 function ProductCategory() {

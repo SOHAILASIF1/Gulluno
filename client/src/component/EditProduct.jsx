@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
-import productCategory from "../../../helper/productCategory";
-import uploadImage from "../../../helper/uploadImage";
+import productCategory from "../helper/productCategory";
+import uploadImage from "../helper/uploadImage";
 import DisplayImage from "./DisplayImage";
 import SummaryApi from "../commen";
 

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import addToCart from "../../../helper/addToCart";
+import addCart from "../helper/addToCart";
 import { Link } from "react-router-dom";
 import { Context } from "../App";
 
@@ -8,7 +8,7 @@ function SearchProduct({ data = [] }) {
 
   const handleCart = async (e, id) => {
     e.preventDefault(); // prevent Link navigation on button click
-    await addToCart(e, id);
+    await addCart(e, id);
     fetchCount();
   };
 

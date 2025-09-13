@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SummaryApi from "../commen";
-import { toast } from "react-toastify";
+
 
 function CompletedOrder() {
   const [orders, setOrders] = useState([]);

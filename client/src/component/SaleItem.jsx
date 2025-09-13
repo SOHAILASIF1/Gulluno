@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import SummaryApi from '../commen';
 import { Link } from 'react-router-dom';
 import { Context } from '../App';
-import addCart from '../../../helper/addToCart';
+import addCart from '../helper/addToCart';
 
 function SaleItem({heading}) {
   const [showAll, setShowAll] = useState(false);
