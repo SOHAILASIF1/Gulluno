@@ -1,6 +1,4 @@
-// helper/addToCart.js
 import SummaryApi from "../commen";
-import { toast } from "react-toastify";
 
 const addCart = async (e, id, size = null, hasSizes = false) => {
   e?.stopPropagation();
@@ -8,6 +6,7 @@ const addCart = async (e, id, size = null, hasSizes = false) => {
 
   try {
     if (hasSizes && !size) {
+      const { toast } = await import("react-toastify"); // 👈 dynamic import
       toast.error("Please select a size first!");
       return;
     }
@@ -23,6 +22,7 @@ const addCart = async (e, id, size = null, hasSizes = false) => {
     });
 
     const response = await fetchData.json();
+    const { toast } = await import("react-toastify"); // 👈 yahan bhi dynamic
 
     if (response.success) {
       toast.success(response.message);
@@ -31,6 +31,7 @@ const addCart = async (e, id, size = null, hasSizes = false) => {
     }
   } catch (error) {
     console.error("Error adding to cart:", error);
+    const { toast } = await import("react-toastify"); // 👈 fallback
     toast.error("Something went wrong!");
   }
 };
