@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import fetchCategoryWiseProduct from "../helper/fetchCategoryWiseProduct";
 import addCart from "../helper/addToCart";
 import { Context } from "../App";
+import { Link } from "react-router-dom";
 
 function VerticalCard({ category, heading }) {
   const [showAll, setShowAll] = useState(false);
